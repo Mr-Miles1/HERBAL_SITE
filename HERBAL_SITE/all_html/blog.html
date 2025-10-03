@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SarfoHerbal — Blog</title>
+<meta name="description" content="HerbalGhana Blog — Natural health tips, herbal remedies, lifestyle guides, and wellness news from Ghana.">
+<link rel="icon" href="/IMAGES/logg.png">
+<style>
+:root{
+  --bg:#fbfbfa;--accent:#0a472e;--accent-2:#117a45;--gold:#ffd700;
+  --muted:#6b6b6b;--card:#fff;--radius:12px;--ease:cubic-bezier(.2,.9,.25,1);
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:var(--bg);color:#0e1720;line-height:1.5;}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;height:auto;}
+.container{width:92%;max-width:1200px;margin:0 auto;padding:0 8px;}
+
+/* TOPBAR */
+.topbar{background:var(--accent);color:#fff;font-size:14px;padding:6px 0;}
+.topbar .container{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;}
+.topbar a{color:var(--gold);margin-left:10px;}
+.topbar a:hover{text-decoration:underline;}
+
+/* HEADER */
+header.site-header{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid #eef6ef;backdrop-filter:blur(6px);padding:14px 0;}
+header .container.nav-row{display:flex;justify-content:space-between;align-items:center;gap:16px;}
+header .brand{display:flex;align-items:center;gap:12px;position:relative;height:46px;}
+header .brand img{position:absolute;top:50%;left:0;transform:translateY(-50%);height:75px;width:auto;}
+header .brand .title{font-weight:700;color:var(--accent);font-size:18px;padding-left:66px;}
+header .main-nav ul{list-style:none;display:flex;gap:18px;margin:0;padding:0;}
+header .main-nav ul li a{padding:8px 12px;border-radius:8px;font-weight:600;color:var(--accent);}
+header .main-nav ul li a.active{color:var(--gold);}
+header .main-nav ul li a:hover{background:#f0fff5;}
+
+/* header actions */
+.actions{display:flex;align-items:center;gap:10px;}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:10px;padding:8px 14px;font-weight:700;cursor:pointer;border:0;}
+.btn.primary{background:var(--accent);color:white;}
+.btn.outline{border:2px solid var(--accent);background:white;color:var(--accent);}
+.hamburger{font-size:22px;background:transparent;border:0;padding:8px;cursor:pointer;display:none;}
+
+/* MOBILE NAV */
+.mobile-nav{position:fixed;top:-100%;left:0;width:100%;max-height:80vh;background:#fff;color:var(--accent);z-index:100;padding:20px;box-shadow:0 4px 18px rgba(0,0,0,0.12);transition:top .35s var(--ease);overflow:auto;border-bottom-left-radius:12px;border-bottom-right-radius:12px;}
+.mobile-nav.open{top:0;}
+.mobile-nav .close{margin-bottom:18px;font-weight:700;cursor:pointer;font-size:18px;color:var(--accent);}
+.mobile-nav ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:12px;}
+.mobile-nav a{color:var(--accent);font-weight:600;padding:10px;border-radius:8px;}
+.mobile-nav a:hover{background:var(--accent);color:white;}
+
+/* HERO */
+.blog-hero{position:relative;text-align:center;color:white;height:50vh;overflow:hidden;}
+.blog-hero img{width:100%;height:100%;object-fit:cover;}
+.blog-hero::after{content:"";position:absolute;inset:0;background:rgba(0,30,15,0.6);}
+.blog-hero .content{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;max-width:800px;padding:0 20px;}
+.blog-hero h1{font-size:2.5rem;margin-bottom:10px;text-shadow:0 6px 18px rgba(0,0,0,0.6);}
+.blog-hero p{font-size:18px;text-shadow:0 4px 12px rgba(0,0,0,0.6);}
+
+/* BLOG LAYOUT */
+.blog-layout{display:grid;grid-template-columns:2.5fr 1fr;gap:30px;padding:50px 0;}
+.blog-section h2{color:var(--accent);font-size:26px;margin-bottom:20px;}
+.blog-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.blog-card{background:#fff;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.08);overflow:hidden;transition:.25s;display:flex;flex-direction:column;}
+.blog-card:hover{transform:translateY(-6px);box-shadow:0 14px 30px rgba(0,0,0,0.12);}
+.blog-card img{width:100%;height:200px;object-fit:cover;}
+.blog-card .content{padding:18px;flex-grow:1;}
+.blog-card h3{color:var(--accent);font-size:20px;margin-bottom:8px;}
+.blog-card p{color:var(--muted);font-size:15px;margin-bottom:12px;}
+.blog-card a.btn{display:inline-block;background:var(--accent);color:#fff;padding:10px 14px;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;transition:.3s;}
+.blog-card a.btn:hover{background:var(--gold);color:var(--accent);}
+.blog-card .more{display:none;color:#333;font-size:14px;line-height:1.6;margin-top:10px;}
+.blog-card .more.open{display:block;}
+
+/* SIDEBAR */
+.sidebar{background:#fff;border-radius:12px;padding:20px;box-shadow:0 6px 16px rgba(0,0,0,0.06);height:fit-content;}
+.sidebar h3{color:var(--accent);font-size:20px;margin-bottom:12px;}
+.sidebar ul{list-style:none;padding:0;margin:0;}
+.sidebar ul li{margin:10px 0;}
+.sidebar ul li a{color:var(--accent-2);font-weight:600;}
+.sidebar ul li a:hover{color:var(--gold);}
+.sidebar .search-box{margin-bottom:18px;}
+.sidebar .search-box input{width:100%;padding:10px;border-radius:8px;border:1px solid #e6efe9;font-size:14px;}
+.sidebar .tags {display:flex;flex-wrap:wrap;gap:8px;margin-top:8px;}
+.sidebar .tag {padding:8px 12px;border-radius:999px;background:#fff;border:1px solid #e6efe9;color:var(--accent);font-weight:700;cursor:pointer;}
+.sidebar .tag.active{background:var(--accent);color:white;border-color:transparent;}
+.sidebar .popular-list{padding:0;margin:0;list-style:none;}
+.sidebar .popular-list li{margin-bottom:10px;}
+.sidebar .recent{margin-top:18px;}
+.sidebar .recent p{font-size:14px;color:var(--muted);margin:8px 0;}
+
+/* SCROLL TO TOP */
+#topBtn{position:fixed;bottom:24px;right:24px;z-index:100;background:var(--accent);color:white;border:none;padding:12px 16px;border-radius:50%;cursor:pointer;font-size:20px;display:none;box-shadow:0 6px 18px rgba(0,0,0,0.3);transition:.3s;}
+#topBtn:hover{background:var(--gold);color:var(--accent);}
+
+/* FOOTER */
+footer{background:#0a472e;color:white;padding:60px 12px;text-align:center;}
+footer p,footer a{font-size:14px;line-height:1.6;}
+footer a{color:#ffd700;text-decoration:none;margin:0 6px;}
+footer a:hover{text-decoration:underline;}
+
+/* RESPONSIVE */
+@media(max-width:1000px){
+  .blog-layout{grid-template-columns:1fr;}
+  .blog-grid{grid-template-columns:1fr;}
+}
+@media(max-width:900px){
+  .blog-hero h1{font-size:2rem;}
+  .blog-hero p{font-size:15px;}
+  header .main-nav ul{display:none;flex-direction:column;gap:12px;width:100%;background:#fff;position:absolute;top:68px;left:0;padding:12px 20px;border-top:1px solid #eef6ef;}
+  header .main-nav.active ul{display:flex;}
+  .hamburger{display:block;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="container">
+    <div class="contact">
+      <span>📍 Accra, Ghana</span>
+      <span>📞 +233 24 331 9859</span>
+      <span>✉ info@herbalghana.com</span>
+    </div>
+    <div class="social">
+      Follow us: 
+      <a href="#">Facebook</a> | 
+      <a href="#">Instagram</a> | 
+      <a href="#">WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="container nav-row">
+    <div class="brand">
+      <a href="../index.html"><img src="/IMAGES/SY.png" alt="HerbalGhana Logo"></a>
+      <div class="title">SarfoHerbal</div>
+    </div>
+    <button class="hamburger" id="mobileToggle" aria-label="Open Menu">☰</button>
+    <nav class="main-nav" id="mainNav">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="/all_html/health.html">Health</a></li>
+        <li><a href="/all_html/about.html">About</a></li>
+        <li><a href="/all_html/blog.html" class="active">Blog</a></li>
+        <li><a href="/all_html/contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- MOBILE NAV -->
+<aside class="mobile-nav" id="mobileNav" aria-hidden="true">
+  <div class="close" id="mobileClose">← Close</div>
+  <ul>
+    <li><a href="/index.html">Home</a></li>
+    <li><a href="/all_html/health.html">Health</a></li>
+    <li><a href="/all_html/about.html">About</a></li>
+    <li><a href="/all_html/blog.html" class="active">Blog</a></li>
+    <li><a href="/all_html/contact.html">Contact</a></li>
+  </ul>
+</aside>
+
+<!-- BLOG HERO -->
+<section class="blog-hero">
+  <img src="/IMAGES/slide1.jpeg" alt="HerbalGhana Blog">
+  <div class="content">
+    <h1>Herbal Wisdom & Wellness Insights</h1>
+    <p>Read inspiring stories, health guides, and herbal tips to empower your lifestyle naturally.</p>
+  </div>
+</section>
+
+<!-- BLOG LAYOUT -->
+<div class="container blog-layout">
+  <!-- MAIN BLOG -->
+  <div class="blog-section">
+    <h2>Latest Articles</h2>
+    <div class="blog-grid">
+      <!-- CARD 1 -->
+      <div class="blog-card" data-category="remedies" data-tags="detox,moringa">
+        <img src="/IMAGES/blog1.jpg" alt="Herbal Detox">
+        <div class="content">
+          <h3>5 Herbal Drinks for Natural Detox</h3>
+          <p>Cleanse your body with time-tested Ghanaian herbal remedies that flush toxins naturally.</p>
+          <div class="more">
+            These drinks include moringa tea, hibiscus (sobolo), neem infusion, ginger-honey tonic, and lemon-grass water. Each has specific benefits like improving digestion, reducing inflammation, and boosting overall immunity. Use fresh ingredients whenever possible and enjoy in moderation for best results.
+          </div>
+          <a class="btn read-btn" href="javascript:void(0)">Read More</a>
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="blog-card" data-category="nutrition" data-tags="moringa,nutrition,superfoods">
+        <img src="/IMAGES/blog2.jpg" alt="Moringa">
+        <div class="content">
+          <h3>Boost Your Immunity with Moringa</h3>
+          <p>Learn how moringa leaves, a local superfood, can strengthen your immune system and support daily nutrition.</p>
+          <div class="more">
+            Moringa (Moringa oleifera) is exceptionally high in vitamins A, C, and E. Consuming moringa leaves regularly can reduce inflammation, support heart health, and provide essential minerals like calcium and iron. Add it to teas, smoothies, or soups for a nutritious boost.
+          </div>
+          <a class="btn read-btn" href="javascript:void(0)">Read More</a>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="blog-card" data-category="remedies" data-tags="stress,teas">
+        <img src="/IMAGES/blog3.jpg" alt="Stress Relief">
+        <div class="content">
+          <h3>Herbal Solutions for Stress Relief</h3>
+          <p>Discover calming teas and natural remedies that reduce anxiety and promote relaxation.</p>
+          <div class="more">
+            Try chamomile nightly, lemon balm during the afternoon slump, and passionflower for deep relaxation. Herbal baths with lavender or eucalyptus oils also help reduce tension. Practicing mindfulness while using these herbs enhances mental and emotional wellbeing.
+          </div>
+          <a class="btn read-btn" href="javascript:void(0)">Read More</a>
+        </div>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="blog-card" data-category="lifestyle" data-tags="habits,wellness">
+        <img src="/IMAGES/blog4.jpg" alt="Healthy Living">
+        <div class="content">
+          <h3>10 Healthy Habits to Add to Your Day</h3>
+          <p>Simple lifestyle changes combined with herbs for a stronger and healthier life.</p>
+          <div class="more">
+            Try a morning routine: warm lemon water, 10 minutes of stretching, mindful breathing, and a small herbal tea. Throughout the day, stay hydrated, eat seasonal fruits and vegetables, and incorporate walking or light exercise. These small habits build long-term wellness.
+          </div>
+          <a class="btn read-btn" href="javascript:void(0)">Read More</a>
+        </div>
+      </div>
+
+      <!-- CARD 5 -->
+      <div class="blog-card" data-category="nutrition" data-tags="nutrition,superfoods,baobab">
+        <img src="/IMAGES/blog5.jpg" alt="Superfoods">
+        <div class="content">
+          <h3>Top 5 Ghanaian Superfoods</h3>
+          <p>A quick guide to local nutrient powerhouses you can add to your diet today.</p>
+          <div class="more">
+            Baobab, Moringa, Hibiscus, Ginger, and Plantain are nutritional powerhouses. They are rich in antioxidants, vitamins, and minerals that promote energy, digestion, and immunity. Incorporate them into meals, teas, or smoothies to enhance your daily nutrition.
+          </div>
+          <a class="btn read-btn" href="javascript:void(0)">Read More</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="search-box">
+      <h3>Search</h3>
+      <input type="search" id="blogSearch" placeholder="Search articles...">
+    </div>
+    <div>
+      <h3>Categories</h3>
+      <ul>
+        <li><a href="#" class="category-link" data-cat="all">All</a></li>
+        <li><a href="#" class="category-link" data-cat="nutrition">Nutrition</a></li>
+        <li><a href="#" class="category-link" data-cat="remedies">Remedies</a></li>
+        <li><a href="#" class="category-link" data-cat="lifestyle">Lifestyle</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3>Tags</h3>
+      <div class="tags">
+        <button class="tag" data-tag="moringa">Moringa</button>
+        <button class="tag" data-tag="detox">Detox</button>
+        <button class="tag" data-tag="teas">Teas</button>
+        <button class="tag" data-tag="stress">Stress</button>
+        <button class="tag" data-tag="nutrition">Nutrition</button>
+        <button class="tag" data-tag="superfoods">Superfoods</button>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- SCROLL TO TOP -->
+<button id="topBtn" title="Go to top">↑</button>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2025 SarfoHerbal. All rights reserved.</p>
+  <p>
+    <a href="#">Privacy Policy</a> | 
+    <a href="#">Terms & Conditions</a> | 
+    <a href="#">Shipping & Returns</a> | 
+    <a href="#">FAQ</a>
+  </p>
+  <p>Contact: info@herbalghana.com | +233 24 331 9859</p>
+  <p>Follow us on: 
+    <a href="#">Facebook</a>, 
+    <a href="#">Instagram</a>, 
+    <a href="#">WhatsApp</a>
+  </p>
+  <p>Address: Fise-Amasaman - Accra, Ghana</p>
+</footer>
+
+<script>
+// Mobile toggle
+const mobileNav = document.getElementById('mobileNav');
+const mobileToggle = document.getElementById('mobileToggle');
+const mobileClose = document.getElementById('mobileClose');
+mobileToggle.addEventListener('click',()=>{mobileNav.classList.add('open');mobileNav.setAttribute('aria-hidden','false');});
+mobileClose.addEventListener('click',()=>{mobileNav.classList.remove('open');mobileNav.setAttribute('aria-hidden','true');});
+
+// Top button
+const topBtn = document.getElementById('topBtn');
+window.addEventListener('scroll',()=>{topBtn.style.display=window.scrollY>300?'block':'none';});
+topBtn.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+// Read more toggles
+document.querySelectorAll('.read-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    const more = btn.previousElementSibling;
+    more.classList.toggle('open');
+    btn.textContent = more.classList.contains('open') ? 'Read Less' : 'Read More';
+  });
+});
+
+// Category filter
+const categoryLinks = document.querySelectorAll('.category-link');
+const blogCards = document.querySelectorAll('.blog-card');
+categoryLinks.forEach(link=>{
+  link.addEventListener('click',e=>{
+    e.preventDefault();
+    const cat = link.dataset.cat;
+    categoryLinks.forEach(l=>l.classList.remove('active'));
+    link.classList.add('active');
+    blogCards.forEach(card=>{
+      if(cat==='all'||card.dataset.category===cat) card.style.display='flex';
+      else card.style.display='none';
+    });
+  });
+});
+
+// Tag filter
+const tagButtons = document.querySelectorAll('.tag');
+tagButtons.forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    btn.classList.toggle('active');
+    const activeTags = Array.from(tagButtons).filter(t=>t.classList.contains('active')).map(t=>t.dataset.tag);
+    blogCards.forEach(card=>{
+      const cardTags = card.dataset.tags.split(',');
+      if(activeTags.length===0||activeTags.some(t=>cardTags.includes(t))) card.style.display='flex';
+      else card.style.display='none';
+    });
+  });
+});
+
+// Search filter
+const searchInput = document.getElementById('blogSearch');
+searchInput.addEventListener('input',()=>{
+  const term = searchInput.value.toLowerCase();
+  blogCards.forEach(card=>{
+    const text = card.querySelector('h3').textContent.toLowerCase() + card.querySelector('p').textContent.toLowerCase() + card.querySelector('.more').textContent.toLowerCase();
+    card.style.display = text.includes(term)?'flex':'none';
+  });
+});
+</script>
+</body>
+</html>

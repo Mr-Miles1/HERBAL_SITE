@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SarfoHerbal — Contact</title>
+<meta name="description" content="Contact HerbalGhana for inquiries, feedback, or support. We’re here to help with natural health tips, herbal remedies, and wellness guidance.">
+<link rel="icon" href="/IMAGES/logg.png">
+<style>
+/* --- ROOT VARIABLES --- */
+:root{
+  --bg:#fbfbfa;--accent:#0a472e;--accent-2:#117a45;--gold:#ffd700;
+  --muted:#6b6b6b;--card:#fff;--radius:12px;--ease:cubic-bezier(.2,.9,.25,1);
+}
+*{box-sizing:border-box;} 
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:var(--bg);color:#0e1720;line-height:1.5;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;}
+a{color:inherit;text-decoration:none;} 
+img{display:block;max-width:100%;height:auto;}
+.container{width:92%;max-width:1200px;margin:0 auto;padding:0 8px;}
+
+/* --- TOPBAR --- */
+.topbar{
+  background:var(--accent);
+  color:#fff;
+  font-size:14px;
+  padding:6px 0;
+}
+.topbar .container{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.topbar .contact span{margin-right:16px;}
+.topbar a{color:var(--gold);margin-left:8px;}
+
+/* --- HEADER --- */
+header.site-header{
+  position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid #eef6ef;backdrop-filter:blur(6px);padding:14px 0;
+}
+header .container.nav-row{display:flex;justify-content:space-between;align-items:center;gap:16px;}
+.brand {position: relative;height: 46px;}
+.brand img{position:absolute;top:50%;left:0;transform:translateY(-50%);height:75px;width:auto;}
+.brand .title{font-weight:700;color:var(--accent);font-size:18px;padding-left:66px}
+header .main-nav ul{list-style:none;display:flex;gap:18px;margin:0;padding:0;}
+header .main-nav ul li a{padding:8px 12px;border-radius:8px;font-weight:600;color:var(--accent);}
+header .main-nav ul li a.active{color:var(--gold);}
+header .main-nav ul li a:hover{background:#f0fff5;}
+
+/* --- MOBILE NAV TOGGLE --- */
+.mobile-toggle{
+  display:none;
+  flex-direction:column;
+  cursor:pointer;
+}
+.mobile-toggle span{
+  width:25px;
+  height:3px;
+  background:var(--accent);
+  margin:4px 0;
+  border-radius:2px;
+}
+
+/* --- HERO (VIDEO) --- */
+.contact-hero{
+  position:relative;
+  text-align:center;
+  color:white;
+  height:50vh;
+  overflow:hidden;
+  margin-bottom:50px;
+}
+.contact-hero video{
+  position:absolute;
+  top:50%;
+  left:50%;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transform:translate(-50%,-50%);
+  z-index:0;
+  filter: blur(3px) brightness(0.6); /* Blur + darken */
+}
+.contact-hero::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,30,15,0.3); /* overlay */
+  z-index:1;
+}
+.contact-hero .content{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  z-index:2;
+  max-width:800px;
+  padding:0 20px;
+}
+.contact-hero h1{font-size:2.5rem;margin-bottom:10px;text-shadow:0 6px 18px rgba(0,0,0,0.6);}
+.contact-hero p{font-size:18px;text-shadow:0 4px 12px rgba(0,0,0,0.6);}
+
+/* --- CONTACT CONTENT --- */
+.contact-container{display:flex;gap:30px;flex-wrap:wrap;padding-bottom:50px;}
+.contact-info, .contact-form{background:#fff;border-radius:12px;padding:30px;box-shadow:0 8px 24px rgba(0,0,0,0.06);flex:1 1 400px;opacity:0;transform:translateY(30px);transition:opacity .8s ease, transform .8s ease;}
+.contact-info.visible, .contact-form.visible{opacity:1;transform:translateY(0);}
+.contact-info h2, .contact-form h2{color:var(--accent);margin-bottom:20px;}
+.contact-info p, .contact-info li{margin:8px 0;color:var(--muted);}
+.contact-info ul{list-style:none;padding:0;}
+.contact-info li strong{color:var(--accent);}
+.contact-form label{display:block;margin-bottom:6px;font-weight:600;color:var(--accent);}
+.contact-form input, .contact-form textarea{width:100%;padding:12px;border-radius:8px;border:1px solid #e6efe9;margin-bottom:16px;font-size:14px;resize:none;}
+.contact-form button{background:var(--accent);color:white;padding:12px 20px;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;border:0;transition:.3s;}
+.contact-form button:hover{background:var(--gold);color:var(--accent);}
+
+/* --- SOCIAL ICONS --- */
+.social-icons a{display:inline-block;margin-right:12px;font-size:18px;text-decoration:none;color:var(--accent);transition:.3s;}
+.social-icons a:hover{color:var(--gold);transform:scale(1.2);}
+
+/* --- MAP --- */
+.map-container{margin-top:30px;border-radius:12px;overflow:hidden;box-shadow:0 6px 16px rgba(0,0,0,0.08);}
+iframe{width:100%;height:300px;border:0;}
+
+/* --- SUCCESS POPUP --- */
+#successPopup{position:fixed;top:20px;left:50%;transform:translateX(-50%);background:var(--accent-2);color:white;padding:16px 24px;border-radius:12px;box-shadow:0 8px 20px rgba(0,0,0,0.3);display:none;z-index:1000;font-weight:700;}
+
+/* --- FOOTER --- */
+footer{background:#0a472e;color:white;padding:60px 12px;text-align:center;}
+footer p,footer a{font-size:14px;line-height:1.6;}
+footer a{color:#ffd700;text-decoration:none;margin:0 6px;}
+footer a:hover{text-decoration:underline;}
+
+/* --- RESPONSIVE --- */
+@media(max-width:900px){
+  .contact-container{flex-direction:column;}
+  .mobile-toggle{display:flex;}
+  header .main-nav ul{display:none;flex-direction:column;gap:12px;width:100%;background:#fff;position:absolute;top:68px;left:0;padding:12px 20px;border-top:1px solid #eef6ef;}
+  header .main-nav.active ul{display:flex;}
+  .contact-hero{height:40vh;}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="container">
+    <div class="contact">
+      <span>📍 Accra, Ghana</span>
+      <span>📞 +233 24 331 9859</span>
+      <span>✉ info@herbalghana.com</span>
+    </div>
+    <div class="social">
+      Follow us: 
+      <a href="#">Facebook</a> | 
+      <a href="#">Instagram</a> | 
+      <a href="#">WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="container nav-row">
+    <div class="brand">
+      <a href="/index.html"><img src="/IMAGES/SY.png" alt="HerbalGhana Logo"></a>
+      <div class="title">SarfoHerbal</div>
+    </div>
+    <div class="mobile-toggle" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/all_html/health.html">Health</a></li>
+        <li><a href="/all_html/about.html">About</a></li>
+        <li><a href="/all_html/blog.html">Blog</a></li>
+        <li><a href="/all_html/contact.html" class="active">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO (VIDEO) -->
+<section class="contact-hero">
+  <video autoplay muted loop playsinline>
+    <source src="/IMAGES/slide5.mp4" type="video/mp4">
+    Your browser does not support HTML5 video.
+  </video>
+  <div class="content">
+    <h1>Get in Touch with Us</h1>
+    <p>Have questions, feedback, or partnership inquiries? We're here to help!</p>
+  </div>
+</section>
+
+<!-- SUCCESS POPUP -->
+<div id="successPopup">Message sent successfully! 🌿</div>
+
+<!-- CONTACT CONTENT -->
+<div class="container contact-container">
+
+  <!-- CONTACT INFO -->
+  <div class="contact-info">
+    <h2>Contact Information</h2>
+    <p>We’re always happy to hear from you! Reach us through any of the following channels:</p>
+    <ul>
+      <li><strong>Phone:</strong> +233 24 331 9859</li>
+      <li><strong>Email:</strong> info@herbalghana.com</li>
+      <li><strong>Address:</strong> Fise-Amasaman - Accra, Ghana</li>
+      <li><strong>WhatsApp:</strong> +233 24 331 9859</li>
+    </ul>
+    <div class="social-icons">
+      <a href="#">Facebook</a>
+      <a href="#">Instagram</a>
+      <a href="#">WhatsApp</a>
+    </div>
+    <p><strong>Working Hours:</strong> Mon–Fri: 9am–6pm, Sat: 10am–2pm</p>
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3979.913627118835!2d-0.205231!3d5.603716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xfdf9b95a7f6b20f%3A0x5c3b3e2e6bbd6d0!2sAccra%2C%20Ghana!5e0!3m2!1sen!2sus!4v1696350000000!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+  </div>
+
+  <!-- CONTACT FORM -->
+  <div class="contact-form">
+    <h2>Send Us a Message</h2>
+    <form id="contactForm" action="https://formspree.io/f/mjkarjoj" method="POST">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" placeholder="Your full name" required>
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="_replyto" placeholder="you@example.com" required>
+      <label for="phone">Phone Number</label>
+      <input type="text" id="phone" name="phone" placeholder="+233 24 123 4567">
+      <label for="subject">Subject</label>
+      <input type="text" id="subject" name="subject" placeholder="Subject of your message" required>
+      <label for="message">Message</label>
+      <textarea id="message" name="message" rows="6" placeholder="Write your message here..." required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+
+</div>
+
+<!-- FOOTER -->
+<footer>
+ <p>&copy; 2025 SarfoHerbal. All rights reserved.</p>
+  <p>
+    <a href="#">Privacy Policy</a> | 
+    <a href="#">Terms & Conditions</a> | 
+    <a href="#">Shipping & Returns</a> | 
+    <a href="#">FAQ</a>
+  </p>
+  <p>Contact: info@herbalghana.com | +233 24 331 9859</p>
+  <p>Follow us on: 
+    <a href="#">Facebook</a>, 
+    <a href="#">Instagram</a>, 
+    <a href="#">WhatsApp</a>
+  </p>
+ <p>Address: Fise-Amasaman - Accra, Ghana</p>
+</footer>
+
+<script>
+// Mobile nav toggle
+function toggleNav(){
+  document.querySelector('header .main-nav').classList.toggle('active');
+}
+
+// Fade-in animation on scroll
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    }
+  });
+},{threshold:0.2});
+document.querySelectorAll('.contact-info, .contact-form').forEach(el=>observer.observe(el));
+
+// Form submission via Formspree
+const form = document.getElementById('contactForm');
+const popup = document.getElementById('successPopup');
+form.addEventListener('submit',(e)=>{
+  e.preventDefault();
+  const data = new FormData(form);
+  fetch(form.action,{method:'POST',body:data,headers:{'Accept':'application/json'}})
+  .then(res=>{
+    if(res.ok){
+      popup.style.display='block';
+      setTimeout(()=>{popup.style.display='none';},3000);
+      form.reset();
+    }else{alert('Oops! There was a problem submitting your form.');}
+  }).catch(()=>{alert('Network error. Please try again later.')});
+});
+</script>
+
+</body>
+</html>

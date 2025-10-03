@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SarfoHerbal — About</title>
+<meta name="description" content="Learn about HerbalGhana, our herbal clinic, mission, vision, and passion for Ghanaian herbal remedies." />
+<meta name="theme-color" content="#0a472e">
+<link rel="icon" href="/IMAGES/logg.png">
+<style>
+:root{
+  --bg:#fbfbfa;--accent:#0a472e;--accent-2:#117a45;--gold:#ffd700;
+  --muted:#6b6b6b;--card:#fff;--radius:12px;--max:1200px;--ease:cubic-bezier(.2,.9,.25,1);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial;background:var(--bg);color:#0e1720;line-height:1.6;}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%;height:auto}
+.container{width:92%;max-width:var(--max);margin:0 auto;padding:0 8px}
+
+/* TOPBAR */
+.topbar{background:linear-gradient(90deg,var(--accent) 0%, #064d2f 100%);color:#fff;font-size:13px;padding:8px 0}
+.topbar .container{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.topbar .contact span{display:inline-flex;gap:8px;align-items:center;opacity:0.95}
+.topbar .social a{color:var(--gold);margin-left:12px;font-weight:600}
+@media(max-width:900px){.topbar{display:none}}
+
+/* HEADER */
+header.site-header{position:sticky;top:0;z-index:60;background:#fff;border-bottom:1px solid #eef6ef;}
+.nav-row{display:flex;align-items:center;justify-content:space-between;padding:14px 0;gap:12px;flex-wrap:wrap}
+.brand {position: relative;height: 46px;}
+.brand img{position:absolute;top:50%;left:0;transform:translateY(-50%);height:75px;width:auto;}
+.brand .title{font-weight:700;color:var(--accent);font-size:18px;padding-left:66px}
+nav.main-nav{display:none}
+nav.main-nav.active{display:block}
+nav.main-nav ul{list-style:none;display:flex;gap:18px;align-items:center;margin:0;flex-wrap:wrap}
+nav.main-nav a{color:#123;font-weight:600;padding:8px 10px;border-radius:8px}
+nav.main-nav a:hover,.main-nav a.active{background:#f0fff5;color:var(--accent-2)}
+.mobile-toggle{display:block;width:28px;height:20px;position:relative;cursor:pointer}
+.mobile-toggle span{position:absolute;height:3px;width:100%;background:var(--accent);border-radius:2px;left:0;transition:0.3s}
+.mobile-toggle span:nth-child(1){top:0}
+.mobile-toggle span:nth-child(2){top:8px}
+.mobile-toggle span:nth-child(3){top:16px}
+
+/* ABOUT HERO */
+.about-hero {
+  position: relative;
+  height: 70vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: white;
+  background: url('../IMAGES/slide4.jpg') center/cover no-repeat;
+  background-size: cover;
+  overflow: hidden;
+  transition: transform 0.5s ease;
+}
+.about-hero:hover{transform: scale(1.03);}
+.about-hero::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,0.55);}
+.about-hero .content{position:relative;z-index:2;max-width:850px;padding:0 12px;}
+.about-hero h1{font-size:2.5rem;margin-bottom:12px;text-shadow:0 4px 20px rgba(0,0,0,0.6);}
+.about-hero p{font-size:18px;opacity:0.95}
+
+/* ABOUT SECTION */
+section.about{padding:70px 0;background:#f7fff8;}
+.about-container{display:grid;grid-template-columns:1fr 1fr;gap:32px;align-items:center;max-width:1100px;margin:auto;padding:0 16px;}
+.about-text h2{color:var(--accent);font-size:2rem;margin-bottom:16px}
+.about-text p{color:var(--muted);margin-bottom:14px;text-align:justify;}
+.about-owner img{border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,0.15);transition:transform 0.3s;}
+.about-owner img:hover{transform:scale(1.05)}
+
+/* VALUES */
+.values{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;margin-top:40px}
+.value-card{flex:1 1 250px;background:white;padding:20px;border-radius:12px;box-shadow:0 6px 16px rgba(0,0,0,0.05);transition:.3s}
+.value-card:hover{transform:translateY(-6px);box-shadow:0 12px 26px rgba(0,0,0,0.08)}
+.value-card h3{color:var(--accent);margin-bottom:8px}
+
+/* TEAM SECTION */
+section.team{padding:80px 0;background:#fff;text-align:center;}
+.team h2{color:var(--accent);font-size:2rem;margin-bottom:40px}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;max-width:1100px;margin:auto;padding:0 16px;}
+.member{background:#f7fff8;border-radius:12px;padding:20px;box-shadow:0 8px 20px rgba(0,0,0,0.05);transition:.3s;cursor:pointer}
+.member:hover{transform:scale(1.05) translateY(-6px);box-shadow:0 12px 26px rgba(0,0,0,0.08);}
+.member img{border-radius:50%;width:130px;height:130px;object-fit:cover;margin-bottom:16px;box-shadow:0 4px 12px rgba(0,0,0,0.15);}
+.member h3{margin:6px 0;color:var(--accent);}
+.member p{font-size:14px;color:var(--muted)}
+
+/* SCROLL EFFECT */
+.fade-up{opacity:0;transform:translateY(40px);transition:all 0.8s ease;}
+.fade-up.visible{opacity:1;transform:translateY(0)}
+
+/* BACK TO TOP BUTTON */
+#backToTop {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  padding: 12px 14px;
+  border-radius: 50%;
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  display: none;
+  z-index: 150;
+}
+#backToTop:hover {background: var(--accent-2);transform: scale(1.08);}
+
+/* FOOTER */
+footer{background:#0a472e;color:white;padding:40px;text-align:center;font-size:14px;}
+footer a{color:var(--gold);margin:0 6px}
+footer a:hover{text-decoration:underline}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  .about-container{grid-template-columns:1fr;text-align:center}
+  nav.main-nav{display:none}
+  .mobile-toggle{display:block}
+}
+@media(min-width:901px){
+  nav.main-nav{display:flex}
+  .mobile-toggle{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="container">
+    <div class="contact">
+      <span>📍 Accra, Ghana</span>
+      <span>📞 +233 24 331 9859</span>
+      <span>✉ info@herbalghana.com</span>
+    </div>
+    <div class="social">
+      Follow us: 
+      <a href="#">Facebook</a> | 
+      <a href="#">Instagram</a> | 
+      <a href="#">WhatsApp</a>
+    </div>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="container nav-row">
+    <div class="brand">
+      <a href="../index.html"><img src="/IMAGES/SY.png" alt="HerbalGhana Logo"></a>
+      <div class="title">SarfoHerbal</div>
+    </div>
+    <div class="mobile-toggle" id="mobileToggle">
+      <span></span><span></span><span></span>
+    </div>
+    <nav class="main-nav" id="mainNav">
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="health.html">Health</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+        <li><a href="/all_html/blog.html">Blog</a></li>
+        <li><a href="/all_html/contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<!-- ABOUT HERO -->
+<section class="about-hero">
+  <div class="content">
+    <h1>About HerbalGhana</h1>
+    <p>Promoting health, wellness, and sustainable herbal practices across Ghana.</p>
+  </div>
+</section>
+
+<!-- ABOUT SECTION -->
+<section class="about fade-up">
+  <div class="about-container">
+    <div class="about-text">
+      <h2>Our Story</h2>
+      <p>The <strong>SARFO YEBOAH GROUP </strong> is a family business that produces quality edible foods, herbal, alcoholic, and non-alcoholic beverages, personal care products, and also deals in the sale of both residential and farmlands across the country.</p>
+      <p>The company is situated in <strong> Fise-Amasaman in the Greater Accra Region of Ghana.</strong> It became operational in 2013 with the sale of office supplies until 2017, when the mobile money agency was added to our line of business. In 2018, farming was added to our line of business. We invested in both crop and animal farming in the then Brong-Ahafo Region.</p>
+
+      <p>The <strong> Sarfo Yeboah group </strong>has gradually etched itself into the Ghanaian herbal and beverage market by manufacturing and marketing high-quality products to meet our customers' needs.</p>
+
+      <p>Sarfo Yeboah Herbal Research and Clinic was established in 2023 by <strong>T/Dr. SARFO YEBOAH</strong> to realize the passion and vision of the talented entrepreneurs.</p>
+
+      <p>Though <strong> T/Dr. Sarfo Yeboah</strong> believed in Traditional and Alternative medicine; he did not pay much attention to it until the death of her sister in <strong> 2022</strong>. Since then, he vowed to promote traditional medicine after the orthodox treatment failed to treat his beloved sister.</p>
+
+
+      <p>Sarfo Yeboah Herbal Research and Clinic is primarily into the manufacturing of herbal products, diagnosing, and treating various ailments with herbs. We also specialize in disease prevention through health education and screenings. We focus on the provision of safe, effective, quality, and well-packaged herbal medicines that are sustainable.</p>
+    </div>
+    <div class="about-owner">
+      <img src="../IMAGE/owner.jpg" alt="Founder of HerbalGhana" srcset="../IMAGE/owner.jpg 1x, ../IMAGE/owner@2x.jpg 2x">
+    </div>
+  </div>
+
+  <div class="values fade-up">
+    <div class="value-card">
+      <h3>🌍 Vision</h3>
+      <p>To become a herbal product manufacturer and a clinic of reference in Ghana.</p>
+    </div>
+    <div class="value-card">
+      <h3>🎯 Mission</h3>
+      <p>To produce quality herbal products that meet health needs using advanced technology and professional staff.</p>
+    </div>
+    <div class="value-card">
+      <h3>💚 Commitment</h3>
+      <p>Providing safe, effective, and sustainable herbal medicines for all.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM SECTION -->
+<section class="team fade-up">
+  <div class="container">
+    <h2>Meet Our Team</h2>
+    <div class="team-grid">
+      <div class="member">
+        <img src="../IMAGE/owner.jpg" alt="Founder" srcset="../IMAGE/owner.jpg 1x, ../IMAGE/owner@2x.jpg 2x">
+        <h3>T/Dr. Sarfo Yeboah</h3>
+        <p>Founder & CEO</p>
+      </div>
+      <div class="member">
+        <img src="../IMAGE/team1.jpg" alt="Team Member 1" srcset="../IMAGE/team1.jpg 1x, ../IMAGE/team1@2x.jpg 2x">
+        <h3>Dr. Ama Kofi</h3>
+        <p>Head Herbal Specialist</p>
+      </div>
+      <div class="member">
+        <img src="../IMAGE/team2.jpg" alt="Team Member 2" srcset="../IMAGE/team2.jpg 1x, ../IMAGE/team2@2x.jpg 2x">
+        <h3>Kwaku Mensah</h3>
+        <p>Production Manager</p>
+      </div>
+      <div class="member">
+        <img src="../IMAGE/team3.jpg" alt="Team Member 3" srcset="../IMAGE/team3.jpg 1x, ../IMAGE/team3@2x.jpg 2x">
+        <h3>Akosua Nyarko</h3>
+        <p>Quality Assurance Lead</p>
+      </div>
+      <div class="member">
+        <img src="../IMAGE/team4.jpg" alt="Team Member 4" srcset="../IMAGE/team4.jpg 1x, ../IMAGE/team4@2x.jpg 2x">
+        <h3>Yaw Boateng</h3>
+        <p>Marketing Lead</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2025 SarfoHerbal. All rights reserved.</p>
+  <p>
+    <a href="#">Privacy Policy</a> | 
+    <a href="#">Terms & Conditions</a> | 
+    <a href="#">Shipping & Returns</a> | 
+    <a href="#">FAQ</a>
+  </p>
+  <p>Contact: info@herbalghana.com | +233 24 331 9859</p>
+  <p>Follow us on: 
+    <a href="#">Facebook</a>, 
+    <a href="#">Instagram</a>, 
+    <a href="#">WhatsApp</a>
+  </p>
+ <p>Address: Fise-Amasaman - Accra, Ghana</p>
+</footer>
+
+<!-- BACK TO TOP BUTTON -->
+<button id="backToTop">↑</button>
+
+<script>
+// Mobile Toggle Nav
+const mobileToggle = document.getElementById('mobileToggle');
+const mainNav = document.getElementById('mainNav');
+mobileToggle.addEventListener('click', ()=> mainNav.classList.toggle('active'));
+
+// Scroll Fade-up Effect
+const fadeEls=document.querySelectorAll('.fade-up');
+function checkFade(){
+  fadeEls.forEach(el=>{
+    const rect=el.getBoundingClientRect();
+    if(rect.top < window.innerHeight - 60){ el.classList.add('visible'); }
+  });
+}
+window.addEventListener('scroll',checkFade);
+window.addEventListener('load',checkFade);
+
+// Back to Top Button
+const backToTop=document.getElementById("backToTop");
+window.addEventListener("scroll",()=>{
+  if(window.scrollY>250){ backToTop.style.display="block"; }
+  else{ backToTop.style.display="none"; }
+});
+backToTop.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+</script>
+
+</body>
+</html>
